@@ -3,7 +3,7 @@
  * CS 030 Project D
  *
  * @author Assistant Professor Mike Ryu mryu@westmont.edu
- * @author Boaty McBoatface bmcboatface@westmont.edu TODO: replace this with your info.
+ * @author Aaron Wu aawu@westmont.edu
  */
 
 
