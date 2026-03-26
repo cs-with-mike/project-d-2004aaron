@@ -63,9 +63,27 @@ public class MazeGenerator {
     return this.renderTarget;
   }
 
-  // TODO: generateMaze() -- see spec (Javadoc) for details.
+  public void generateMaze() {
+    maze.initialize();
+    generateMaze(maze.cells[r0][c0]);
+  }
 
-  // TODO: generateMaze(Cell currCell)  -- see spec (Javadoc) for details.
+  public void generateMaze(Cell currCell) {
+    currCell.setPath(true);
+    displayMaze(maze);
+
+    ArrayList<Cell> neighbors = maze.getNeighbors(currCell);
+    if (isShuffle) {
+      Collections.shuffle(neighbors);
+    }
+
+    for (Cell neighbor : neighbors) {
+      if (!neighbor.isPath()) {
+        maze.connectNeighbors(currCell, neighbor);
+        generateMaze(neighbor);
+      }
+    }
+  }
 
   /**
    * Displays the given {@link Maze} at its current state to both to the GUI window and console.
