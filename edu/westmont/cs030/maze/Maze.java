@@ -17,6 +17,9 @@ public class Maze {
     public final Cell[][] cells;
 
     public Maze(int numRows, int numCols) {
+        if (numRows <= 0 || numCols <= 0) {
+            throw new IllegalArgumentException("Illegal maze dimensions");
+        }
         this.cells = new Cell[numRows][numCols];
         initialize();
     }

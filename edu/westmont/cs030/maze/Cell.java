@@ -107,7 +107,11 @@ public class Cell {
    * @return text representation of this cell
    */
   public String toString() {
-    return "Cell{r=" + r + ", c=" + c + ", isPath=" + isPath + "}";
+    if (isPath) {
+      return String.format("Cell [%2d][%2d]: PATH", r, c);
+    } else {
+      return String.format("Cell [%2d][%2d]: WALL", r, c);
+    }
   }
 
   /**
