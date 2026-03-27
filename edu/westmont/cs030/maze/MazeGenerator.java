@@ -57,17 +57,27 @@ public class MazeGenerator {
 
   /**
    * Returns the GUI render target that was set at instantiation.
+   *
    * @return A {@link JTextComponent} if the render target was set, <code>null</code> if unset.
    */
   public JTextComponent getRenderTarget() {
     return this.renderTarget;
   }
 
+  /**
+   * Initializes the Maze using Maze.initialize() then calls the recursive generateMaze(Cell) method with the initial
+   * Cell from the Maze to begin the path generation process from.
+   */
   public void generateMaze() {
     maze.initialize();
     generateMaze(maze.cells[r0][c0]);
   }
 
+  /**
+   * Recursive maze generation algorithm based on Wikipedia's description of the process.
+   *
+   * @param currCell current Cell to continue the maze path generation from
+   */
   public void generateMaze(Cell currCell) {
     currCell.setPath(true);
     displayMaze(maze);

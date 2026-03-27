@@ -59,6 +59,7 @@ public class Cell {
 
   /**
    * Getter for the value of C
+   *
    * @return the column index
    */
   public int colIndex() {
@@ -67,6 +68,7 @@ public class Cell {
 
   /**
    * Getter for value of R
+   *
    * @return the row index
    */
   public int rowIndex() {
@@ -75,6 +77,7 @@ public class Cell {
 
   /**
    * Tell if something is a path or a wall
+   *
    * @return value of isPath
    */
   public boolean isPath() {
@@ -83,6 +86,7 @@ public class Cell {
 
   /**
    * Change the value of isPath from wall to path and vice versa
+   *
    * @param isPath
    */
   public void setPath(boolean isPath) {
@@ -91,19 +95,20 @@ public class Cell {
 
   /**
    * Render this cell as a portion of a maze.
+   *
    * @return PATH_TEXT if this cell is a path, else WALL_TEXT
    */
   public String getText() {
     if (isPath) {
       return PATH_TEXT;
-    }
-    else {
+    } else {
       return WALL_TEXT;
     }
   }
 
   /**
    * Return the text representation of this cell for debugging (not rendering) purposes.
+   *
    * @return text representation of this cell
    */
   public String toString() {
@@ -117,7 +122,8 @@ public class Cell {
   /**
    * Get the column index for the neighboring column if it exists, defaults if the direction does not affect the column
    * return value
-   * @param dir direction from the cell the column is in
+   *
+   * @param dir      direction from the cell the column is in
    * @param colLimit limit for map size so that it is not searching for neighbors beyond the borders
    * @return index of the neighboring column in the direction provided
    * @throws IndexOutOfBoundsException
@@ -139,14 +145,17 @@ public class Cell {
         }
         return neighborCol;
       }
-      default -> { return this.c; }
+      default -> {
+        return this.c;
+      }
     }
   }
 
   /**
    * Get the row index for the neighboring row if it exists, defaults if the direction does not affect the row
    * return value
-   * @param dir direction from the cell the row is in
+   *
+   * @param dir      direction from the cell the row is in
    * @param rowLimit limit for map size so that it is not searching for neighbors beyond the borders
    * @return index of the neighboring row in the direction provided
    * @throws IndexOutOfBoundsException
@@ -170,7 +179,9 @@ public class Cell {
         }
         return neighborRow;
       }
-      default -> { return this.r; }
+      default -> {
+        return this.r;
+      }
     }
   }
 
