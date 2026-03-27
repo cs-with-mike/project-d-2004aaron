@@ -3,7 +3,7 @@
  * CS 030 Project D
  *
  * @author Assistant Professor Mike Ryu mryu@westmont.edu
- * @author Boaty McBoatface bmcboatface@westmont.edu TODO: replace this with your info.
+ * @author Aaron Wu aawu@westmont.edu
  */
 
 
@@ -57,15 +57,43 @@ public class MazeGenerator {
 
   /**
    * Returns the GUI render target that was set at instantiation.
+   *
    * @return A {@link JTextComponent} if the render target was set, <code>null</code> if unset.
    */
   public JTextComponent getRenderTarget() {
     return this.renderTarget;
   }
 
-  // TODO: generateMaze() -- see spec (Javadoc) for details.
+  /**
+   * Initializes the Maze using Maze.initialize() then calls the recursive generateMaze(Cell) method with the initial
+   * Cell from the Maze to begin the path generation process from.
+   */
+  public void generateMaze() {
+    maze.initialize();
+    generateMaze(maze.cells[r0][c0]);
+  }
 
-  // TODO: generateMaze(Cell currCell)  -- see spec (Javadoc) for details.
+  /**
+   * Recursive maze generation algorithm based on Wikipedia's description of the process.
+   *
+   * @param currCell current Cell to continue the maze path generation from
+   */
+  public void generateMaze(Cell currCell) {
+    currCell.setPath(true);
+    displayMaze(maze);
+
+    ArrayList<Cell> neighbors = maze.getNeighbors(currCell);
+    if (isShuffle) {
+      Collections.shuffle(neighbors);
+    }
+
+    for (Cell neighbor : neighbors) {
+      if (!neighbor.isPath()) {
+        maze.connectNeighbors(currCell, neighbor);
+        generateMaze(neighbor);
+      }
+    }
+  }
 
   /**
    * Displays the given {@link Maze} at its current state to both to the GUI window and console.
